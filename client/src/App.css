@@ -1,0 +1,30 @@
+/* 기본 폰트 및 리셋 */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Pretendard', -apple-system, sans-serif;
+}
+
+:root {
+  --main-green: #4CAF50; /* 피그마의 메인 연두색 */
+  --sub-green: #E8F5E9;
+  --gray-text: #666666;
+  --light-gray: #F5F5F5;
+}
+
+body {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+}
+
+/* 모바일 뷰포트 고정 (피그마 도안 느낌) */
+.App {
+  width: 100%;
+  max-width: 430px; /* 아이폰 Pro Max 기준 */
+  min-height: 100vh;
+  border-left: 1px solid #eee;
+  border-right: 1px solid #eee;
+  position: relative;
+}
