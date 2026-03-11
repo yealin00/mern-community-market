@@ -6,44 +6,61 @@ import {
   AiOutlineMessage,
   AiOutlinePlusSquare,
   AiOutlineUser,
+  AiOutlineHeart,
+  AiOutlineMessage as AiOutlineComment,
+  AiOutlineEllipsis,
 } from "react-icons/ai";
 
-// 1. src/assets 폴더에서 이미지를 직접 import 합니다.
 import yarnOatmeal from "../assets/yarn_oatmeal_wool.jpg";
 import yarnPastel from "../assets/yarn_pastel_cotton.jpg";
 import yarnSilk from "../assets/yarn_silk_mohair.jpg";
 import yarnSparkle from "../assets/yarn_sparkle_scrubby.jpg";
 
 export default function Feed() {
-  // 2. import한 변수명을 데이터에 매칭합니다.
-  const knittingFeeds = [
+  const feedPosts = [
     {
       id: 1,
-      title: "오트밀 베이지 울사",
-      price: "12,000원",
-      author: "포근뜨개",
+      user: "포근뜨개",
+      userId: "@warm_knitting",
+      content:
+        "오늘 들어온 오트밀 베이지 울사예요. 촉감이 너무 부드러워서 목도리 뜨기에 딱입니다! 🧶",
       img: yarnOatmeal,
+      likes: 58,
+      comments: 12,
+      date: "2026년 3월 11일",
     },
     {
       id: 2,
-      title: "파스텔 믹스 코튼",
-      price: "8,500원",
-      author: "한땀공방",
+      user: "한땀공방",
+      userId: "@hand_made",
+      content:
+        "파스텔 믹스 코튼 실로 수세미를 떠봤는데 색감이 미쳤어요... 소장 가치 100%! 알약마켓에서 한정 수량으로 공유합니다. 💊",
       img: yarnPastel,
+      likes: 42,
+      comments: 5,
+      date: "2026년 3월 10일",
     },
     {
       id: 3,
-      title: "실크 모헤어 블루",
-      price: "15,000원",
-      author: "블루니팅",
+      user: "블루니팅",
+      userId: "@blue_yarn",
+      content:
+        "실크 모헤어 블루 컬러 입고 완료! 은은한 광택이 도는 게 정말 고급스러워요. 가디건 뜨면 정말 예쁠 것 같지 않나요? 😍",
       img: yarnSilk,
+      likes: 89,
+      comments: 24,
+      date: "2026년 3월 9일",
     },
     {
       id: 4,
-      title: "수세미용 반짝이실",
-      price: "3,000원",
-      author: "반짝이네",
+      user: "반짝이네",
+      userId: "@sparkle_knit",
+      content:
+        "까칠까칠하지만 중독성 있는 수세미용 반짝이실! 이번에 신상 컬러들이 대거 추가되었습니다. 주방 분위기를 바꿔보세요! ✨",
       img: yarnSparkle,
+      likes: 31,
+      comments: 7,
+      date: "2026년 3월 8일",
     },
   ];
 
@@ -55,32 +72,42 @@ export default function Feed() {
       </header>
 
       <main className="feed-content">
-        {/* 심플한 검색창 영역 */}
-        <div className="search-section">
-          <div className="search-bar">
-            <AiOutlineSearch className="search-bar-icon" />
-            <input type="text" placeholder="검색어를 입력해주세요." />
-          </div>
-        </div>
-
-        {/* 뜨개질 실 그리드 */}
-        <div className="knitting-grid">
-          {knittingFeeds.map((item) => (
-            <div key={item.id} className="yarn-card">
-              <div className="yarn-img-box">
-                <img src={item.img} alt={item.title} />
+        {feedPosts.map((post) => (
+          <article key={post.id} className="feed-post">
+            <div className="post-header">
+              <div className="user-info">
+                <div className="user-profile-img">💊</div>
+                <div className="user-name-group">
+                  <span className="user-name">{post.user}</span>
+                  <span className="user-id">{post.userId}</span>
+                </div>
               </div>
-              <div className="yarn-info">
-                <span className="yarn-author">{item.author}</span>
-                <h3 className="yarn-title">{item.title}</h3>
-                <p className="yarn-price">{item.price}</p>
-              </div>
+              <AiOutlineEllipsis className="more-icon" />
             </div>
-          ))}
-        </div>
+
+            <div className="post-text">{post.content}</div>
+
+            <div className="post-image-container">
+              <img src={post.img} alt="뜨개질 포스트" className="post-image" />
+            </div>
+
+            <div className="post-footer">
+              <div className="reaction-icons">
+                <div className="icon-group">
+                  <AiOutlineHeart className="footer-icon" />{" "}
+                  <span>{post.likes}</span>
+                </div>
+                <div className="icon-group">
+                  <AiOutlineComment className="footer-icon" />{" "}
+                  <span>{post.comments}</span>
+                </div>
+              </div>
+              <span className="post-date">{post.date}</span>
+            </div>
+          </article>
+        ))}
       </main>
 
-      {/* 하단 네비게이션 */}
       <footer className="bottom-nav">
         <div className="nav-item active">
           <AiOutlineHome />
